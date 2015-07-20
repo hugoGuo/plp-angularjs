@@ -1,0 +1,17 @@
+<div class="mdl-card mdl-shadow--2dp team-card">
+  <div class="mdl-card__title" ng-style="{'background-image':'url('+info.logo+')'}">
+    <h2 class="mdl-card__title-text">{{ info.name }}</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <p>
+      Wins 10 - 12 Losss
+      Goal difference +2
+      Other stats...
+    </p>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a ng-click="$parent.selectTeam($parent.$index)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      View Team
+    </a>
+  </div>
+</div>

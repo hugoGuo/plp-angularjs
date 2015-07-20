@@ -1,0 +1,11 @@
+<div class="mdl-grid">
+  <div ng-show="selectedTeam == undefined" class="mdl-cell mdl-cell--4-col" ng-repeat="team in teams">
+    <team-card info="team"></team-card>
+  </div>
+  
+  <div ng-hide="selectedTeam == undefined">
+    <h1>
+      {{ teams[selectedTeam].name }}
+    </h1>
+  </div>
+</div>
