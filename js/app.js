@@ -1,39 +1,37 @@
-var plpApp = angular.module('plpApp', ['ngRoute']);
+var plpApp = angular.module('plpApp', ['ui.router']);
+
+var apiUrl = 'http://localhost:1337';
 
 // ===== Controllers =====
-plpApp.controller('mainController', function($scope, $route, $routeParams, $location) {
-  $scope.$route = $route;
-  $scope.$routeParams = $routeParams;
-  $scope.$location = $location;
-  
-  $scope.title = "Home";
-  
-  $scope.setTitle = function(title) {
-    $scope.title = title;
-  };
+plpApp.controller('mainController', function($scope, $location) {
+
 });
 
-plpApp.controller('teamController', ['$scope', '$routeParams', 'getTeams', function($scope, $routeParams, getTeams) {
-  $scope.params = $routeParams;
-  
+plpApp.controller('TeamsController', ['$scope', 'getTeams', function($scope, getTeams) {
   getTeams.success(function(data) {
     $scope.teams = data;
+    console.log(data);
+  }).error(function(err){
+    $scope.err = err;
+    console.log(err);
   });
+}]);
+
+plpApp.controller('TeamController', ['$scope', '$stateParams', '$http', function($scope, $stateParams, $http) {
+  $scope.params = $stateParams;
   
-  $scope.selectedTeam = undefined;
-  
-  $scope.selectTeam = function(index) {
-    if ($scope.selectedTeam == index)
-      $scope.selectedTeam = undefined;
-    else
-      $scope.selectedTeam = index;
-    $scope.title = "team";
-  };
+  $http.get(apiUrl + '/team/' + $scope.params.teamId)
+    .success(function(data){
+      $scope.team = data;
+    })
+    .error(function(err){
+      $scope.err = err;
+    });
 }]);
 
 // ===== Factories =====
 plpApp.factory('getTeams', function($http) { 
-  return $http.get('http://localhost:1337/team') 
+  return $http.get(apiUrl + '/team') 
             .success(function(data) { 
               return data; 
             }) 
@@ -54,14 +52,23 @@ plpApp.directive('teamCard', function() {
 });
 
 // ===== Config =====
-plpApp.config(function($routeProvider, $locationProvider) {
-  $routeProvider
-  .when('/team', {
-    templateUrl: 'pages/team.html',
-    controller: 'teamController'
+plpApp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $urlRouterProvider.otherwise("/");
+  
+  $stateProvider
+  .state('home', {
+    url: '/',
+    templateUrl: 'partials/home.html'
   })
-  .otherwise({
-    redirectTo: '/'
+  .state('teams', {
+    url: '/teamlist',
+    templateUrl: 'partials/teams.html',
+    controller: 'TeamsController'
+  })
+  .state('team', {
+    url: '/team/:teamId',
+    templateUrl: 'partials/team.html',
+    controller: 'TeamController'
   })
   
   $locationProvider.html5Mode(true);

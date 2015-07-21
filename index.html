@@ -33,7 +33,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
     <script src="js/app.js"></script>
   </head>
   <body ng-controller="mainController">
@@ -77,18 +77,18 @@
           </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a ng-click="setTitle('Home')" class="mdl-navigation__link" href="/"><i class="mdl-color-text--blue-grey-400 material-icons">home</i>Home</a>
-          <a ng-click="setTitle('Teams')" class="mdl-navigation__link" href="team"><i class="mdl-color-text--blue-grey-400 material-icons">people</i>Teams</a>
-          <a ng-click="setTitle('Events')" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">event</i>Events</a>
-          <a ng-click="setTitle('Matches')" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">directions_run</i>Matches</a>
-          <a ng-click="setTitle('Predictions')" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">thumbs_up_down</i>Predictions</a>
-          <a ng-click="setTitle('Leaderboard')" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">flag</i>Leaderboard</a>
+          <a class="mdl-navigation__link" ui-sref="home"><i class="mdl-color-text--blue-grey-400 material-icons">home</i>Home</a>
+          <a class="mdl-navigation__link" ui-sref="teams"><i class="mdl-color-text--blue-grey-400 material-icons">people</i>Teams</a>
+          <a class="mdl-navigation__link" ui-sref="events"><i class="mdl-color-text--blue-grey-400 material-icons">event</i>Events</a>
+          <a class="mdl-navigation__link" ui-sref="matches"><i class="mdl-color-text--blue-grey-400 material-icons">directions_run</i>Matches</a>
+          <a class="mdl-navigation__link" ui-sref="predictions"><i class="mdl-color-text--blue-grey-400 material-icons">thumbs_up_down</i>Predictions</a>
+          <a class="mdl-navigation__link" ui-sref="leaderboard"><i class="mdl-color-text--blue-grey-400 material-icons">flag</i>Leaderboard</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">help_outline</i></a>
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content" ng-view>
+        <div class="mdl-grid demo-content" ui-view>
           
         </div>
       </main>
