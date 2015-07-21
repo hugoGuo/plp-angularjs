@@ -1,6 +1,6 @@
 var plpApp = angular.module('plpApp', ['ui.router']);
 
-var apiUrl = 'http://82.34.201.231:1337';
+var apiUrl = 'http://82.34.201.231/api';
 
 // ===== Controllers =====
 plpApp.controller('MainController', ['$scope', 'userFactory', function($scope, userFactory) {
