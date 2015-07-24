@@ -72,7 +72,7 @@ plpApp.factory('userFactory', ['$http', function($http) {
   var urlBase = '/user';
   dataFactory = {
     register: function(username, password, email) {
-      return $http.post(apiUrl + urlBase + '/register', {
+      return $http.post(apiUrl + urlBase + '/', {
         username: username,
         password: password,
         email: email
